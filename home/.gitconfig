@@ -13,7 +13,7 @@
   excludesfile = ~/.gitignore
   autocrlf = input
   attributesfile = ~/.gitattributes
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  # pager = diff-so-fancy | less --tabs=4 -RFX
 [branch]
   autosetuprebase = always
 [color]
