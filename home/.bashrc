@@ -13,11 +13,11 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # allow for ** globbing of directories
-shopt -s globstar
+#shopt -s globstar
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=99999
+HISTFILESIZE=99999
 
 export TERM=xterm-256color
 
@@ -54,12 +54,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+#if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#fi
+#unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -99,11 +99,8 @@ if [ -f ~/.bash_prompt ]; then
 fi
 
 # OHGOD use vi bindings
-set -o vi
-
-# Use go as a normal user
-export GOPATH=~/go
-export PATH=$PATH:$GOPATH/bin
+# OHGOD No
+#set -o vi
 
 # personal binaries should be in the path.
 export PATH="$HOME/bin:$PATH"
@@ -112,7 +109,8 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export EDITOR="vim"
+# Change to emacs whenever you get a chance
+export EDITOR="nano"
 
 if [[ $(which google-chrome-stable 2> /dev/null) ]]; then
   export BROWSER="google-chrome-stable"
@@ -120,10 +118,6 @@ else
   export BROWSER=""
 fi
 
-export EC2_KEYPAIR=bencos
-export EC2_URL=https://ec2.us-east-1.amazonaws.com
-export EC2_PRIVATE_KEY=$HOME/.ec2/pk-YBSJD3UQADEXGEX5SRTVJQBLAU3S23A5.pem
-export EC2_CERT=$HOME/.ec2/cert-YBSJD3UQADEXGEX5SRTVJQBLAU3S23A5.pem
 
 # Ruby garbage collection stuff
 export RUBY_GC_HEAP_INIT_SLOTS=500000
@@ -132,16 +126,35 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=50000000
 
 # Rubunius in 1.9 mode
-export RBXOPT=-X19
+#export RBXOPT=-X19
 
 # z support
-if [ -f /etc/profile.d/z.sh ]; then
-    . /etc/profile.d/z.sh
-fi
-if [ -f /usr/lib/z.sh ]; then
-    . /usr/lib/z.sh
-fi
+#if [ -f /etc/profile.d/z.sh ]; then
+#    . /etc/profile.d/z.sh
+#fi
+#if [ -f /usr/lib/z.sh ]; then
+#    . /usr/lib/z.sh
+#fi
 
 fi # Close the if started on line 1.
 
-eval `keychain --eval --agents ssh id_rsa`
+#eval `keychain --eval --agents ssh id_rsa`
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+
+# Gives mkvirtualenv, workon
+# source /usr/local/bin/virtualenvwrapper.sh
+
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add NVM
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+
