@@ -99,8 +99,9 @@ if [ -f ~/.bash_prompt ]; then
 fi
 
 # OHGOD use vi bindings
-# OHGOD No
 #set -o vi
+# OHGOD No, emacs instead
+set -o emacs
 
 # personal binaries should be in the path.
 export PATH="$HOME/bin:$PATH"
