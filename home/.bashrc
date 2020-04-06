@@ -161,3 +161,5 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 
+# Use Python3 with alias
+alias python=/usr/local/bin/python3
