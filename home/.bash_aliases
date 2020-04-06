@@ -8,6 +8,10 @@ alias packer='packer-color --auronly'
 
 alias git=hub
 
+# Use Python3 with aliases
+alias python=/usr/local/bin/python3
+alias pip=pip3
+
 function gcb() {
   git branch | grep '^\*' | cut -c3-
 }
